@@ -4,6 +4,7 @@ import "./login.scss";
 import { UserType } from "../app/types";
 import { useCreateUserMutation } from "../features/user/userApi";
 import CatDog from "../../public/Confused Dog & Cat.jpeg";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [createUser, { isLoading, isError, isSuccess }] =
@@ -36,8 +37,8 @@ const SignIn = () => {
     };
 
     try {
-      await createUser(UserForm).unwrap();
-      console.log(UserForm);
+      const res = await createUser(UserForm).unwrap();
+      console.log(res);
     } catch (error) {
       console.error("Failed to register user: ", error);
     }
@@ -117,7 +118,7 @@ const SignIn = () => {
       </div>
       <figure>
         <img src={CatDog} />
-        <a>Already have account?</a>
+        <Link to='/signup'>Already have an account?</Link>
       </figure>
     </div>
   );
